@@ -33,7 +33,7 @@ function myFunc(arg) {
   let item = msgArr.pop();
   fs.writeFile("file1.txt", item.toString(), (err) => {
     if (err) throw err;
-    console.log(`update file1.txt : ${cnt}`);
+    console.log(`update file1.txt : ${item}`);
   });
 }
 setInterval(myFunc, 1000, "");
