@@ -9,14 +9,7 @@ app.get('/', (req, res) => {
 })
 
 app.get('/get-one', (req, res) => {
-  let cnt = 0;
-  if(fs.existsSync("file1.txt")){
-    // 書き込み
-    cnt = Number(fs.readFileSync("file1.txt"));
-    console.log(`read file1.txt : ${cnt}`);
-  }
-    msgArr.push(1);
-  res.send(`queued cnt is ${cnt}`)
+  msgArr.push(1);
 })
 
 
@@ -29,9 +22,15 @@ function myFunc(arg) {
     console.log("no queued")
     return;
   }
-
+  let cnt = 0;
+  if(fs.existsSync("file1.txt")){
+    // 書き込み
+    cnt = Number(fs.readFileSync("file1.txt"));
+    console.log(`read file1.txt : ${cnt}`);
+  }
   let item = msgArr.pop();
-  fs.writeFile("file1.txt", item.toString(), (err) => {
+  cnt += item;
+  fs.writeFile("file1.txt", cnt.toString(), (err) => {
     if (err) throw err;
     console.log(`update file1.txt : ${item}`);
   });
