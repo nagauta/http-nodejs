@@ -36,4 +36,4 @@ function myFunc(arg) {
     console.log(`update file1.txt : ${cnt}`);
   });
 }
-setTimeout(myFunc, 1000, "");
+setInterval(myFunc, 1000, "");
