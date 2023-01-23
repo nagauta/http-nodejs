@@ -31,7 +31,7 @@ function myFunc(arg) {
   }
   let item = msgArr.pop();
   cnt += item;
-  fs.writeFile("file1.txt", item.toString(), (err) => {
+  fs.writeFile("file1.txt", cnt.toString(), (err) => {
     if (err) throw err;
     console.log(`update file1.txt : ${item}`);
   });
