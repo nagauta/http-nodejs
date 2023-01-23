@@ -2,7 +2,7 @@ import express from 'express'
 import fs from 'fs'
 const app = express()
 const port = process.env.PORT|| 3000;
-
+var msgArr = [];
 app.get('/', (req, res) => {
 
   res.send('Hello World!')
@@ -15,15 +15,25 @@ app.get('/get-one', (req, res) => {
     cnt = Number(fs.readFileSync("file1.txt"));
     console.log(`read file1.txt : ${cnt}`);
   }
-    cnt += 1;
-    fs.writeFile("file1.txt", cnt.toString(), (err) => {
-      if (err) throw err;
-      console.log(`update file1.txt : ${cnt}`);
-    });
-  res.send(`cnt is ${cnt}`)
+    msgArr.push(1);
+  res.send(`queued cnt is ${cnt}`)
 })
 
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)
 })
+
+function myFunc(arg) {
+  if(msgArr.length <= 0){
+    console.log("no queued")
+    return;
+  }
+
+  let item = msgArr.pop();
+  fs.writeFile("file1.txt", item.toString(), (err) => {
+    if (err) throw err;
+    console.log(`update file1.txt : ${cnt}`);
+  });
+}
+setTimeout(myFunc, 1000, arg);
