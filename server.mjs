@@ -10,6 +10,7 @@ app.get('/', (req, res) => {
 
 app.get('/get-one', (req, res) => {
   msgArr.push(1);
+  res.send(`queued`)
 })
 
 
@@ -30,7 +31,7 @@ function myFunc(arg) {
   }
   let item = msgArr.pop();
   cnt += item;
-  fs.writeFile("file1.txt", cnt.toString(), (err) => {
+  fs.writeFile("file1.txt", item.toString(), (err) => {
     if (err) throw err;
     console.log(`update file1.txt : ${item}`);
   });
