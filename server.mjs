@@ -36,4 +36,5 @@ function myFunc(arg) {
     console.log(`update file1.txt : ${item}`);
   });
 }
+
 setInterval(myFunc, 1000, "");
